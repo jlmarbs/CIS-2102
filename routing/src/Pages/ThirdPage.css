@@ -1,0 +1,93 @@
+.third-page {
+    max-width: 1000px;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .third-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .third-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .third-page form label {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .third-page form input {
+    width: 100%;
+    padding: 8px;
+    margin: 0px 0px 10px 0px;
+    border: 1px solid #666; /* Darker border color */
+    border-radius: 4px;
+    background-color: #555; /* Slightly lighter input background */
+    color: #fff; /* Light text color for input fields */
+  }
+  
+  .third-page button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .third-page button:hover {
+    background-color: #0056b3;
+  }
+  
+  .third-page ul {
+    list-style: none;
+    padding: 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .third-page li {
+    background-color: #666; /* Darker background color for list items */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .third-page li button {
+    margin-top: 8px;
+    padding: 4px 8px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .third-page li button:hover {
+    background-color: #c82333;
+  }
+  
+  @media (max-width: 800px) {
+    ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    ul {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  
