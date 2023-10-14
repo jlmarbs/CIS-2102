@@ -1,0 +1,18 @@
+.Display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+  
+.student-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    flex: 1 0 calc(33.33% - 20px);
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
