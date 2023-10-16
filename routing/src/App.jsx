@@ -1,29 +1,17 @@
 import { useState } from 'react'
-import { BrowserRouter, Route, Link, Routes, NavLink } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Routes, NavLink, Navigate } from 'react-router-dom'
 import FirstPage from './Pages/FirstPage'
 import SecondPage from './Pages/SecondPage'
 import ThirdPage from './Pages/ThirdPage'
 import './App.css'
 
 function App() {
-
-  const Protected = ({isLoggedIn, children})=> {
-    if(isLoggedIn === true){
-      return (
-        <>
-        {children}
-        </>
-      )
-    } else{
-      return (
-        <>
-        <h1 className="h1-error">NOT ALLOWED!</h1>
-        </>
-      )
-    }
-  }
   
   const [loggedIn, setLoggedIn] = useState(false)
+
+  const ProtectedRoute = ({ element, isLoggedIn }) => {
+    return isLoggedIn ? element : <Navigate to="/error" />
+  }
 
   return (
     <>
@@ -37,21 +25,14 @@ function App() {
       </nav>
     </header>
       <Routes>
-        <Route path="/first" element={
-          <Protected isLoggedIn={loggedIn}>
-          <FirstPage />
-        </Protected>
-        } />
+        <Route path="/first" element={<FirstPage />} />
         <Route path="/second" element={
-          <Protected isLoggedIn={loggedIn}>
-            <SecondPage />
-          </Protected>
+          <ProtectedRoute element={<SecondPage />} isLoggedIn={loggedIn} />
         } />
         <Route path="/third" element={
-          <Protected isLoggedIn={loggedIn}>
-            <ThirdPage />
-          </Protected>
+          <ProtectedRoute element={<ThirdPage />} isLoggedIn={loggedIn} />
         } />
+        <Route path="/error" element={<h1 className="h1-error">NOT ALLOWED!</h1>} />
       </Routes>
     </BrowserRouter>
     </>
