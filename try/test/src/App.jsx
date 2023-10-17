@@ -92,29 +92,35 @@ export default function App() {
   const updateSales = (price) => {
     setTotalSales((prevSales) => prevSales + price);
   };
+
   const assignToBus = (busNumber, passenger) => {
-    const busId = parseInt(passenger.id);
-    if (busId >= 1 && busId <= 2) { 
+    const destination = passenger.destination; // Assuming the passenger has a "destination" property.
+  
+    if (busNumber === "Bus1" || busNumber == "Bus2") {
       setBuses((prevBuses) => ({
         ...prevBuses,
         Bus1: [...(prevBuses.Bus1 || []), passenger],
       }));
-    } else if (busId >= 3 && busId <= 4) { 
+    } else if (busNumber === "Bus3" || busNumber == "Bus4") {
       setBuses((prevBuses) => ({
         ...prevBuses,
         Bus2: [...(prevBuses.Bus2 || []), passenger],
       }));
-    } else if (busId >= 5 && busId <= 6) {
-     
+    } else if (busNumber === "Bus5" || busNumber == "Bus6") {
       setBuses((prevBuses) => ({
         ...prevBuses,
         Bus3: [...(prevBuses.Bus3 || []), passenger],
       }));
     }
+
+    passenger.busNumber = busNumber;
   
-    setContact((prevContact) => prevContact.filter((contact) => contact.id !== passenger.id));
+    setContact((prevContact) =>
+      prevContact.filter((contact) => {
+        return !contact.busNumber;
+      })
+    );
   };
-  
   
 
   return (
@@ -163,25 +169,26 @@ export default function App() {
                 </tr>
               </thead>
               <tbody>
-                {contact.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>
-                      {destinations.map((destination) => (
-                        <button
-                          key={destination.id}
-                          onClick={() => {
-                            assignToBus(`Bus${destination.id}`, item);
-                            updateSales(destination.price);
-                          }}
-                        >
-                          {destination.destination}
-                        </button>
-                      ))}
-                    </td>
-                  </tr>
-                ))}
+              {contact.map((item) => (
+  <tr key={item.id}>
+    <td>{item.id}</td>
+    <td>{item.name}</td>
+    <td>
+      {destinations.map((destination) => (
+        <button
+          key={destination.id}
+          onClick={() => {
+            assignToBus(`Bus${destination.id}`, item);
+            updateSales(destination.price);
+          }}
+        >
+          {destination.destination}
+        </button>
+      ))}
+    </td>
+  </tr>
+))}
+
               </tbody>
             </table>
           </>
