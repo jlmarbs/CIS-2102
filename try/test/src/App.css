@@ -47,3 +47,25 @@
   flex-direction:column;
   margin: 10px;
 }
+
+.input-box {
+  margin-bottom: 10px;
+}
+
+.input-box label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-box input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.error {
+  margin-top: 5px;
+  font-size: 14px;
+}
