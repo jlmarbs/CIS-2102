@@ -94,7 +94,6 @@ export default function App() {
   };
 
   const assignToBus = (busNumber, passenger) => {
-    const destination = passenger.destination; // Assuming the passenger has a "destination" property.
   
     if (busNumber === "Bus1" || busNumber == "Bus2") {
       setBuses((prevBuses) => ({
