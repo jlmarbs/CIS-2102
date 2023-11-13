@@ -1,34 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [input, setInput] = useState({ name: '', age: '' })
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/users")
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+  }, [])
+
+  const handleAddUser = (e) => {
+    e.preventDefault();
+
+    const maxId = Math.max(0, ...users.map((user) => user.id))
+    const newUser = { id: maxId + 1, ...input }
+
+    fetch("http://localhost:3000/addUser", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUser),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="form-container container">
+      <form onSubmit={handleAddUser}>
+        <div>
+          <label htmlFor="name">Name: </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={input.name}
+            onChange={(e) => setInput({ ...input, name: e.target.value })}
+            className="input-box"
+          />
+        </div>
+        <div>
+          <label htmlFor="age">Age: </label>
+          <input
+            type="number"
+            name="age"
+            id="age"
+            value={input.age}
+            onChange={(e) => setInput({ ...input, age: e.target.value })}
+            className="input-box"
+          />
+        </div>
+        <button type="submit" className="submit-button">ADD</button>
+      </form>
+    </div>
   )
 }
 
