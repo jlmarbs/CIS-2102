@@ -5,6 +5,8 @@ const app = express()
 const port = 3000
 
 const cors = require("cors")
+const mysql = require('mysql2')
+const { error } = require("console")
 
 app.use(cors())
 app.use(express.json())
@@ -14,6 +16,40 @@ const userList = [
   { id: 2, name: "Gran", age: 28 },
   { id: 3, name: "Ean", age: 29 },
 ]
+
+// const con = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: '',
+//   database: 'anydatabasename'
+// })
+
+// app.get('/getPersons', (req, res) => {
+//   con.query('SELECT * FROM `persons`', (error, data) => { // error is always at first then data is next
+//     console.log(data)
+//     res.send(data)
+//   })
+// })
+
+// app.get('/getPersons/:id', (req, res) => {
+//   con.query(`SELECT * from persons WHERE id = ${req.params.id}`, (err, data) => { //V1
+//     console.log(err)
+//     res.send(data)
+//   })
+// })
+
+// app.get('/getPersons2/:id', (req, res) => {
+//   con.query('SELECT * FROM `persons` WHERE `id` = ?', [req.params.id], (err, data) => { //V2
+//     console.log(err)
+//     res.send(data)
+//   })
+// })
+
+// app.post('/addPersons', (req, res) => {
+//   con.query(`INSERT INTO person (name, age) VALUES ('${req.body.name}', '${req.body.age}')`, (err, data) => {
+//     res.send({message: "Added Successfully."})
+//   })
+// })
 
 app.get("/", (req, res) => {
   res.send("<h1>Hello</h1>");
