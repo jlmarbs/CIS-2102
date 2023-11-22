@@ -45,10 +45,31 @@ const userList = [
 //   })
 // })
 
-// app.post('/addPersons', (req, res) => {
-//   con.query(`INSERT INTO person (name, age) VALUES ('${req.body.name}', '${req.body.age}')`, (err, data) => {
-//     res.send({message: "Added Successfully."})
-//   })
+// // app.post('/addPersons', (req, res) => {
+// //   con.query(
+//       `INSERT INTO person (name, age) VALUES ('${req.body.name}', '${req.body.age}')`,
+//       (err, data) => {
+// //      res.send({message: "Added Successfully."})
+// //   }
+//     )
+// // })
+
+// app.patch('/editPerson/:id', (req, res) => {
+//   con.query(
+//     `UPDATE persons SET name = ?, age = ?, WHERE id = ?`,
+//     [req.body.name, req.body.age, req.params.id],
+//     (err, data) => {
+//       res.send({ message: "Edited Successfully." })
+//     }
+//   )
+// })
+
+// app.delete('/deletePerson/:id', (req, res) => {
+//   `DELETE FROM persons WHERE id = ?`,
+//   [req.params.id],
+//   (err, data) => {
+//     res.send({ message: "Deleted Successfully." })
+//   }
 // })
 
 app.get("/", (req, res) => {
